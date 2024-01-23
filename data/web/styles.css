@@ -1,0 +1,148 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body,
+#mapid {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-size: larger;
+}
+
+@font-face {
+    font-family: display;
+    src: url(fonts/PlayfairDisplay-VariableFont_wght.ttf);
+}
+
+#letra {
+    font-family: display;
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#video-background {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1;
+    filter: blur(0px);
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    color: white;
+    height: auto;
+}
+
+.app {
+    border-radius: 3%;
+    margin-top: 1%;
+    margin-bottom: 3%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(0, 33, 46);
+    opacity: 95%;
+    width: 94%;
+    height: auto;
+}
+
+.container-fluid {
+    background-color: rgb(0, 33, 46);
+}
+
+.navbar-collapse {
+    transition: height 0.2s ease;
+}
+
+#noticia1 {
+    background-image: url('img/BilbaoNoticia.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+    height: 300px;
+    filter: blur(3px);
+
+}
+
+#noticia2 {
+    text-align: center;
+    height: 300px;
+    background-image: url('img/DonostiNoticia.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: blur(3px);
+}
+
+#cartaP{
+    height: auto;
+}
+
+
+@media (max-width: 990px) {
+    .video-container {
+        position: relative;
+        width: 100%;
+        height: auto;
+        overflow: scroll;
+    }
+
+    #noticia1 {
+        text-align: center;
+        height: auto;
+    }
+
+    #noticia2 {
+        text-align: center;
+        height: auto;
+    }
+
+    #grafico {
+        text-align: center;
+        height: auto;
+    }
+
+}
+
+@media (max-width: 440px) {
+    .video-container {
+        position: relative;
+        width: 100%;
+        height: auto;
+        overflow: scroll;
+    }
+
+    #noticia1 {
+        text-align: center;
+        height: auto;
+    }
+
+    #noticia2 {
+        text-align: center;
+        height: auto;
+    }
+
+    #grafico {
+        text-align: center;
+        height: auto;
+    }
+}

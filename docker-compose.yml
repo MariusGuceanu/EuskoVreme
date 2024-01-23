@@ -1,0 +1,77 @@
+services:
+# Contenedor apache
+  apache:
+    image: httpd
+    container_name: Apache2
+    ports:
+      - "8082:80"
+    volumes:
+      - './data/web/:/usr/local/apache2/htdocs/'     
+
+# Contenedor nginx
+  nginx:
+    image: nginx:latest
+    container_name: NGINX
+    ports:
+      - "8084:80"
+    links:
+      - apache
+      - laravel_api
+    volumes:
+      - './data/nginx/nginx.conf:/etc/nginx/nginx.conf'
+# # Contenedor mysql
+#   mysql:
+#     image: mysql:latest
+#     container_name: MySql
+#     environment:
+#       MYSQL_DATABASE: 'EuskoVreme'
+#       MYSQL_USER: 'marius'
+#       MYSQL_PASSWORD: '123456789'
+#       MYSQL_ROOT_PASSWORD: '123456789'
+#     ports:
+#       - '3306:3306'
+#     expose:
+#       - '3306'
+#     volumes:
+#       - './my-db:/var/lib/mysql'
+# Contenedor laravel api-bbdd
+  laravel_api:
+    image: docker.io/bitnami/laravel:10
+    container_name: EuskoVreme_API_Laravel
+    ports:
+      - '8087:8000'
+    environment:
+        - DB_HOST=185.60.40.210
+        - DB_PORT=3306
+        - DB_USERNAME=Marius
+        - DB_PASSWORD=123456789
+        - DB_DATABASE=Marius
+    volumes:
+      - './laravel_api:/app'
+# # Contenedor laravel sesiones, bbdd-pagina web
+  laravel_BBDD:
+    image: docker.io/bitnami/laravel:10
+    container_name: Laravel_BBDD
+    ports:
+      - '8083:8000'
+    environment:
+        - DB_HOST=185.60.40.210
+        - DB_PORT=3306
+        - DB_USERNAME=Marius
+        - DB_PASSWORD=123456789
+        - DB_DATABASE=Marius
+    volumes:
+      - './laravel_data_managment:/app'
+# php my admin
+  # phpmyadmin:
+  #   image: phpmyadmin/phpmyadmin
+  #   container_name: PhpMyAdmin
+  #   links:
+  #     - mysql
+  #   environment:
+  #     PMA_HOST: db
+  #     PMA_PORT: 3306
+  #     PMA_ARBITRARY: 1
+  #   restart: always
+  #   ports:
+  #     - 8085:80
