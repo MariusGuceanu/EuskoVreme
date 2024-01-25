@@ -15,6 +15,10 @@ body {
     font-size: larger;
 }
 
+#bodyLog{
+    background-image: url('');
+}
+
 @font-face {
     font-family: display;
     src: url(fonts/PlayfairDisplay-VariableFont_wght.ttf);
