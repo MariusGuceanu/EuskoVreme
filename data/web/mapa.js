@@ -67,3 +67,7 @@ function getRandomData() {
         values: values
     };
 }
+
+ function cargarDatosApi(){
+    fetch()
+ }

@@ -44,7 +44,7 @@ services:
         - DB_HOST=185.60.40.210
         - DB_PORT=3306
         - DB_USERNAME=Marius
-        - DB_PASSWORD=123456789
+        - DB_PASSWORD=servicio
         - DB_DATABASE=Marius
     volumes:
       - './laravel_api:/app'
@@ -58,7 +58,7 @@ services:
         - DB_HOST=185.60.40.210
         - DB_PORT=3306
         - DB_USERNAME=Marius
-        - DB_PASSWORD=123456789
+        - DB_PASSWORD=servicio
         - DB_DATABASE=Marius
     volumes:
       - './laravel_data_managment:/app'
