@@ -29,8 +29,8 @@ for (var i = 0; i < markers.length; i++) {
 // Función para mostrar un gráfico de líneas en el popup
 function showLineChart(latlng, data) {
     var chartContainer = document.createElement("canvas");
-    chartContainer.style.width = "22vh";
-    chartContainer.style.height = "20vh";
+    chartContainer.style.width = "44vh";
+    chartContainer.style.height = "40vh";
 
     var popup = L.popup().setLatLng(latlng).setContent(chartContainer);
     popup.addTo(map); // Añadir el popup al mapa para que el contenedor esté en el DOM
@@ -57,7 +57,7 @@ function showLineChart(latlng, data) {
 
 // Función para obtener datos de ejemplo
 function getRandomData() {
-    var labels = ["Enero", "Febrero", "Marzo", "Abril", "Mayo"];
+    var labels = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
     var values = labels.map(function () {
         return Math.floor(Math.random() * 50) + 50;
     });
@@ -67,7 +67,3 @@ function getRandomData() {
         values: values
     };
 }
-
- function cargarDatosApi(){
-    fetch()
- }
