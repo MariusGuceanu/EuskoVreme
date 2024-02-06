@@ -23,14 +23,15 @@ for (var i = 0; i < markers.length; i++) {
     // Añade el evento click al marcador para mostrar el gráfico en el popup
     marker.on("click", function (e) {
         showLineChart(e.latlng, getRandomData());
+        anadirPronostico();
     });
 }
 
 // Función para mostrar un gráfico de líneas en el popup
 function showLineChart(latlng, data) {
     var chartContainer = document.createElement("canvas");
-    chartContainer.style.width = "44vh";
-    chartContainer.style.height = "40vh";
+    chartContainer.style.width = "33vh";
+    chartContainer.style.height = "30vh";
 
     var popup = L.popup().setLatLng(latlng).setContent(chartContainer);
     popup.addTo(map); // Añadir el popup al mapa para que el contenedor esté en el DOM
@@ -57,7 +58,7 @@ function showLineChart(latlng, data) {
 
 // Función para obtener datos de ejemplo
 function getRandomData() {
-    var labels = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+    var labels = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
     var values = labels.map(function () {
         return Math.floor(Math.random() * 50) + 50;
     });
@@ -67,3 +68,33 @@ function getRandomData() {
         values: values
     };
 }
+
+var contenidoPronostico = document.getElementById("contenidoPronostico");
+
+// function anadirPronostico(){
+
+// }
+// for (var i = 0; i < markers.length; i++) {
+//     var marker = new L.marker([markers[i][1], markers[i][2]])
+//         .bindPopup(markers[i][0])
+//         .addTo(map);
+//     marker.on("click", function (e) {
+//         // Genera el HTML de la card
+//         var cardHTML = generateCardHTML(e.latlng, getRandomData());
+
+//         // Asigna el HTML al contenido del div
+//         contenidoPronostico.innerHTML = cardHTML;
+//     });
+// }
+// function generateCardHTML(latlng, data) {
+//     var cardHTML = '<div class="card">';
+//     cardHTML += '<div class="card-header">Pronóstico</div>';
+//     cardHTML += '<div class="card-body">';
+//     cardHTML += '<h5 class="card-title">Ubicación: ' + latlng.toString() + '</h5>';
+//     cardHTML += '<canvas id="chartContainer"></canvas>';
+//     cardHTML += '</div></div>';
+
+//     // Añade el contenedor de gráfico al DOM
+//     contenidoPronostico.innerHTML = cardHTML;
+//     return cardHTML;
+// }

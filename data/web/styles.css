@@ -125,37 +125,77 @@ body {
 }
 
 #noticia1 {
-    
-    background: darkslategray;
+    background-image: url('img/DonostiNoticia.jpg');
     background-size: cover;
     text-align: center;
-    height: auto;
-    backdrop-filter: blur(4px);
-
-    
+    height: 31vh;
 }
 
 #noticia2 {
+    background-image: url('img/BilbaoNoticia.jpg');
     text-align: center;
-    height: auto;
-    background: darkslategray;
+    height: 31vh;
     background-size: cover;
-    backdrop-filter: blur(4px);
 
 }
 
+#noticia1,
+#noticia2 {
+    position: relative;
+    overflow: hidden;
+}
+
 #noticiaContent {
-    width: 100%;
-    height: 28vh;
-    background-color: darkslategray;
-    color: white;
-    
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+#noticia1:hover #noticiaContent,
+#noticia2:hover #noticiaContent {
+    opacity: 1;
+}
+
+#noticia1:before,
+#noticia2:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: inherit;
+    background-size: cover;
+    filter: blur(8px);
+    z-index: -1;
+}
+
+
+#noticia2:hover>#noticiaContent {
+    opacity: 1;
 }
 
 #cartaP {
     height: auto;
 }
 
+#divDD1 {
+    margin: auto;
+    align-items: center;
+    text-align: center;
+    vertical-align: top;
+    margin: 3%;
+}
+
+#icono-drop {
+    width: 50vh;
+    height: 40vh;
+    background-color: blueviolet;
+    border-radius: 3%;
+}
 
 @media (max-width: 990px) {
     .video-container {
@@ -167,12 +207,21 @@ body {
 
     #noticia1 {
         text-align: center;
-        height: auto;
+        height: 40vh;
     }
 
     #noticia2 {
         text-align: center;
-        height: auto;
+        height: 40vh;
+    }
+
+    #noticiaContent {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        transition: opacity 0.3s;
     }
 
     #grafico {
@@ -192,12 +241,12 @@ body {
 
     #noticia1 {
         text-align: center;
-        height: auto;
+        height: 20vh;
     }
 
     #noticia2 {
         text-align: center;
-        height: auto;
+        height: 20vh;
     }
 
     #grafico {
