@@ -9,5 +9,5 @@ class Localidad extends Model
 {
     protected $table = 'localidad';
     public $timestamps = false;
-    protected $fillable = ['zona_id', 'localidad_id', 'nombre_localidad', 'latitud', 'altitud'];
+    protected $fillable = ['zona_id', 'localidad_id', 'nombre_localidad'];
 }

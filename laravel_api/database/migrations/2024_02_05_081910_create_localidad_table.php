@@ -15,8 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('zona_id')->constrained('zona_euskalmet');
             $table->integer('localidad_id');
-            $table->integer('latitud');
-            $table->integer('altitud');
         });
     }
 
