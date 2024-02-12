@@ -35,34 +35,36 @@ class fetchLocalidad extends Command
         $options = [
             'headers' => [
                 'Content-Type' => 'application/json',
-                'Authorization' => 'Bearer ' . $token,
+                'Authorization' => 'Bearer ' . $token,         
             ],
-            'ignore_errors' => true,
         ];
-
+        
         $zonaEuskalmetController = new ZonaEuskalmetController();
-        $listaZonasEuskalmet = $zonaEuskalmetController->getAll();
 
-        foreach ($listaZonasEuskalmet as $zonaEuskalmet) {
-            $apiUrl = 'https://api.sandbox.euskadi.eus/euskalmet/geo/regions/basque_country/zones/' .$zonaEuskalmet ->cod_zona. '/locations';
+        $zonasEuskalmet = $zonaEuskalmetController->index();
 
+        $ciudades = ['irun', 'donostia', 'hondarribia', 'oiartzun', 'bilbao', 'gasteiz'];
+
+        foreach($zonasEuskalmet as $zonaEuskalmet) {
+            $apiUrl = 'https://api.euskadi.eus/euskalmet/geo/regions/' . $zonaEuskalmet['cod_region'] .'/zones/' . $zonaEuskalmet['cod_zona'] . '/locations';
+            
+            // Configuración del cliente Guzzle
             $client = new Client();
+            
+            // Realizar la solicitud y obtener la respuesta
             $response = $client->get($apiUrl, $options);
-
-
+            
+            // Procesar la respuesta como sea necesario
             $data = json_decode($response->getBody(), true);
-
-            foreach ($data as $localidad) {
-                $localidad = new Localidad();
-                $localidad->cod_zona = $localidad['regionZoneId'];
-                $localidad->cod_region = $localidad['regionId'];
-                $localidad->save();
+            
+            
+            foreach($data as $localizacion) {
+                if(!in_array($localizacion['regionZoneLocationId'], $ciudades)) continue;
+                $localizacion_euskalmet = new LocalizacionEuskalmet();
+                $localizacion_euskalmet->nombre = $localizacion['regionZoneLocationId'];
+                $localizacion_euskalmet->id_zona_euskalmet = $zonaEuskalmet['id'];
+                $localizacion_euskalmet->save();
             }
         }
-
-        // $table->foreignId('zona_id')->constrained('zona_euskalmet');
-        // $table->integer('localidad_id');
-        // $table->integer('latitud');
-        // $table->integer('altitud');
     }
 }

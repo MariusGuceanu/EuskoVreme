@@ -10,10 +10,17 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('provincia', function (Blueprint $table) {
+        Schema::create('municipio', function (Blueprint $table) {
             $table->id();
-            $table->integer('codProv');
-            $table->string('Nombre');
+            $table->string('nombreProvincia');
+            $table->string('nombreMunicipio');
+            $table->string('latitud');
+            $table->string('longitud');
+            $table->string('codigoIne');
+            $table->unsignedBigInteger('');
+            $table->foreign('')->references('id')->on('localidad');
+            $table->unsignedBigInteger('id_zona_el_tiempo');
+            $table->foreign('id_zona_el_tiempo')->references('id')->on('zona_el_tiempo');
         });
     }
 

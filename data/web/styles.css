@@ -16,7 +16,9 @@ body {
 }
 
 #bodyLog {
-    background-image: url('');
+    background-image: url('img/LoginFondo.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 @font-face {
@@ -253,4 +255,39 @@ body {
         text-align: center;
         height: auto;
     }
+}
+
+#contenidoLogin {
+    opacity: 90%;
+    overflow: hidden;
+    width: 50%;
+    height: 100vh;
+    background-color: #27B9C2;
+    position: fixed;
+    top: 0;
+    right: 0;
+}
+
+#contenidoLogin a{
+    display: block;
+    margin: auto;
+    text-align: center;
+    margin-top: 5%;
+    color: aliceblue;
+}
+
+#tituloLI {
+    width: 100%;
+    text-align: center;
+    margin-top: 7%;
+    font-weight: 900;
+    font-size: 120px;
+    font-style: italic;
+}
+
+#subtitulo {
+    width: 100%;
+    text-align: center;
+    margin-top: 5%;
+    color: aliceblue;
 }
