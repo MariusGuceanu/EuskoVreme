@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('zona_euskalmets', function (Blueprint $table) {
+        Schema::create('localidad', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->foreignId('zona_id')->constrained('zona_euskalmet');
+            $table->integer('localidad_id');
         });
     }
 
@@ -22,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('zona_euskalmets');
+        Schema::dropIfExists('localidad');
     }
 };

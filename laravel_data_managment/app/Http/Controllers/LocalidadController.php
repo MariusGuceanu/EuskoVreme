@@ -62,4 +62,9 @@ class LocalidadController extends Controller
     {
         //
     }
+
+    public function getAll()
+    {
+        return Localidad::all();
+    }
 }

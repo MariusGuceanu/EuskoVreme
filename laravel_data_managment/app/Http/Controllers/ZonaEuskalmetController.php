@@ -62,4 +62,8 @@ class ZonaEuskalmetController extends Controller
     {
         //
     }
+
+    public function getAll(){
+        return ZonaEuskalmet::all();
+    }
 }
