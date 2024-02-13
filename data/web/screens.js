@@ -43,14 +43,14 @@ function crearCardsPronostico() {
     const url = `http://localhost:8087/api/pronosticos/${municipios.join(',')}`
     console.log(url)
 
-    const options = {
+    const options3 = {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${localStorage.getItem('token')}`,
         },
     }
-    fetch(url, options)
+    fetch(url, options3)
         .then(res => res.json())
         .then(data => {
             let cards = "";

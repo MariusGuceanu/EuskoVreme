@@ -9,7 +9,7 @@ const register = e => {
     const nombre_usuario = document.getElementById('InputName').value
 
 
-    const options = {
+    const options2 = {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -17,7 +17,7 @@ const register = e => {
         body: JSON.stringify({ email, password, password_confirmation, nombre_usuario}),
     }
 
-    fetch(apiUrl, options)
+    fetch(apiUrl, options2)
         .then(res => res.json())
         .then(data => {
             if (data.access_token) {

@@ -70,27 +70,31 @@
                 <!-- Noticias -->
                 <div class="col-md-7">
                   <!-- Noticia 1 -->
-                  <div class="card mb-4 mt-4" id="noticia1">
-                    <div class="card-body">
-                      <div id="noticiaContent">
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia, quisquam tempora.
-                          Recusandae accusantium eum voluptatibus rerum fugiat incidunt enim! Tempore repellat
-                          nesciunt eius doloremque voluptates alias maxime minima quos id.</p>
+                  <a href="https://www.elconfidencial.com/el-tiempo/2024-02-13/el-tiempo-en-bilbao-miercoles_3830191/">
+                    <div class="card mb-4 mt-4" id="noticia1">
+                      <div class="card-body">
+                        <div id="noticiaContent">
+                          <p>Este miércoles Bilbao (Vizcaya) presentará un escenario poco nuboso desde primera hora del
+                            día y será de nubes altas a partir de primera hora de la mañana, a juicio de la Agencia
+                            Estatal de Meteorología (AEMET).</p>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  </a>
 
                   <!-- Noticia 2 -->
-                  <div class="card mt-5 mb-5" id="noticia2">
-                    <div class="card-body">
-                      <div id="noticiaContent">
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia, quisquam tempora. Recusandae
-                          accusantium eum voluptatibus rerum fugiat incidunt enim! Tempore repellat nesciunt eius
-                          doloremque voluptates alias maxime minima quos id.</p>
+                  <a
+                    href="https://www.eitb.eus/es/eltiempo/detalle/9421385/alerta-naranja-en-bizkaia-y-gipuzkoa-por-rachas-de-viento-que-superaran-120-kmh/">
+                    <div class="card mt-5 mb-5" id="noticia2">
+                      <div class="card-body">
+                        <div id="noticiaContent">
+                          <p>Las fuertes rachas de viento, de hasta 120 kilómetros por hora en el litoral, han provocado
+                            decenas de incidentes en Euskal Herria, en uno de los cuales han resultado heridas dos
+                            personas al caerles un árbol encima en Donostia-San Sebastián.</p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </div>
+                </div></a>
 
                 <!-- Gráficos -->
                 <div class="col-md-5 mt-4">
@@ -145,47 +149,47 @@
           </div>
 
           <div id="cardsPronostico" class="container">
-        </div>
+          </div>
 
-        <script>
-          var iconoDescripcion = {
-            lluvia: "Descripción de lluvia",
-            veleta: "Descripción de veleta",
-            viento: "Descripción de viento",
-            nube: "Descripción de nube",
-            celsius: "Descripción de celsius",
-            humedad: "Descripción de humedad"
-          };
+          <script>
+            var iconoDescripcion = {
+              lluvia: "Descripción de lluvia",
+              veleta: "Descripción de veleta",
+              viento: "Descripción de viento",
+              nube: "Descripción de nube",
+              celsius: "Descripción de celsius",
+              humedad: "Descripción de humedad"
+            };
 
-          function allowDrop(ev) {
-            ev.preventDefault();
-          }
+            function allowDrop(ev) {
+              ev.preventDefault();
+            }
 
-          function drag(ev) {
-            ev.dataTransfer.setData("text", ev.target.id);
-          }
+            function drag(ev) {
+              ev.dataTransfer.setData("text", ev.target.id);
+            }
 
-          function drop(ev) {
-            ev.preventDefault();
-            var data = ev.dataTransfer.getData("text");
-            var draggedElement = document.getElementById(data);
-            var clonedElement = draggedElement.cloneNode(true);
-            ev.target.appendChild(clonedElement);
+            function drop(ev) {
+              ev.preventDefault();
+              var data = ev.dataTransfer.getData("text");
+              var draggedElement = document.getElementById(data);
+              var clonedElement = draggedElement.cloneNode(true);
+              ev.target.appendChild(clonedElement);
 
-            var text = iconoDescripcion[data]; // Obtener la descripción del icono
-            document.getElementById("texto-icono").innerHTML = text;
-          }
-        </script>
+              var text = iconoDescripcion[data]; // Obtener la descripción del icono
+              document.getElementById("texto-icono").innerHTML = text;
+            }
+          </script>
 
-        <script src="charts.js"></script>
-        <script src="screens.js"></script>
-        <script src="mapa.js"></script>
+          <script src="charts.js"></script>
+          <script src="screens.js"></script>
+          <script src="mapa.js"></script>
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-          integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-          crossorigin="anonymous"></script>
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"></script>
+          <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+          <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>

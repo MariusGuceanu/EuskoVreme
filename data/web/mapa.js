@@ -6,15 +6,15 @@ var map = L.map('mapid').setView([41.6857693, -5.9423150], zoom);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
-const options = {
+let optionsMapa = {
     method: 'GET',
     headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${localStorage.getItem('token')}`,
     },
-}
+};
 
-fetch('http://localhost:8087/api/municipios', options)
+fetch('http://localhost:8087/api/municipios', optionsMapa)
 
     .then(res => res.json())
     .then(data => {
@@ -22,6 +22,7 @@ fetch('http://localhost:8087/api/municipios', options)
             var marker = new L.marker([municipio.latitud, municipio.longitud])
                 .bindPopup(municipio.nombreMunicipio)
                 .addTo(map);
+
             // Añade el evento click al marcador para mostrar el gráfico en el popup
             marker.on("click", function (e) {
                 showLineChart(e.latlng, getRandomData());
@@ -80,4 +81,5 @@ function getRandomData() {
     };
 }
 
+var contenidoPronostico = document.getElementById("contenidoPronostico");
 

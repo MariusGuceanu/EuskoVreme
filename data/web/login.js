@@ -6,7 +6,7 @@ const inicioDeSesion = e => {
     const email = document.getElementById('InputEmail').value
     const password = document.getElementById('InputPassword').value
 
-    const options = {
+    const options1 = {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -14,7 +14,7 @@ const inicioDeSesion = e => {
         body: JSON.stringify({ email, password }),
     }
 
-    fetch(apiUrl, options)
+    fetch(apiUrl, options1)
         .then(res => res.json())
         .then(data => {
             if (data.access_token) {
