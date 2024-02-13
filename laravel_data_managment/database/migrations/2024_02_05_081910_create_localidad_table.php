@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('localidad', function (Blueprint $table) {
             $table->id();
             $table->foreignId('zona_id')->constrained('zona_euskalmet');
-            $table->integer('localidad_id');
+            $table->string('localidad_id');
         });
     }
 
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('localidad');
+        // 
     }
 };

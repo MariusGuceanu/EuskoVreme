@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Localidad extends Model
+class Provincia extends Model
 {
-    protected $table = 'localidad';
+    protected $table = 'provincia';
     public $timestamps = false;
-    protected $fillable = ['zona_id', 'localidad_id'];
+    protected $fillable = ['codProv','Nombre'];
 }

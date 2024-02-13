@@ -20,5 +20,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         //
+        ini_set('default_charset', 'UTF-8');
     }
 }

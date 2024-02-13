@@ -6,6 +6,8 @@ use App\Http\Controllers\ZonaEuskalmetController;
 use App\Models\Localidad;
 use GuzzleHttp\Client;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Log;
+
 
 class fetchLocalidad extends Command
 {
@@ -21,7 +23,7 @@ class fetchLocalidad extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Comando para guardar los datos de las localidades de la API de Euskalmet en la BBDD';
 
     /**
      * Execute the console command.
@@ -35,36 +37,38 @@ class fetchLocalidad extends Command
         $options = [
             'headers' => [
                 'Content-Type' => 'application/json',
-                'Authorization' => 'Bearer ' . $token,         
+                'Authorization' => 'Bearer ' . $token,
             ],
         ];
-        
+
         $zonaEuskalmetController = new ZonaEuskalmetController();
 
         $zonasEuskalmet = $zonaEuskalmetController->getAll();
 
-        $municipios = ['irun', 'donostia', 'mondragon', 'oiartzun', 'bilbao', 'gasteiz','errenteria','larraul'];
+        $municipios = ['irun', 'donostia', 'mondragon', 'oiartzun', 'bilbao', 'gasteiz', 'errenteria', 'hondarribia'];
 
-        foreach($zonasEuskalmet as $zonaEuskalmet) {
-            $apiUrl = 'https://api.euskadi.eus/euskalmet/geo/regions/' . $zonaEuskalmet['cod_region'] .'/zones/' . $zonaEuskalmet['cod_zona'] . '/locations';
-            
+        foreach ($zonasEuskalmet as $zonaEuskalmet) {
+            $apiUrl = 'https://api.euskadi.eus/euskalmet/geo/regions/' . $zonaEuskalmet['cod_region'] . '/zones/' . $zonaEuskalmet['cod_zona'] . '/locations';
+
             // Configuración del cliente Guzzle
             $client = new Client();
-            
+
             // Realizar la solicitud y obtener la respuesta
             $response = $client->get($apiUrl, $options);
-            
+
             // Procesar la respuesta como sea necesario
             $data = json_decode($response->getBody(), true);
-            
-            
-            foreach($data as $localizacion) {
-                if(!in_array($localizacion['regionZoneLocationId'], $municipios)) continue;
+            Log::info($apiUrl);
+            foreach ($data as $localizacion) {
+                if (!in_array($localizacion['regionZoneLocationId'], $municipios))
+                    continue;
                 $localidad = new Localidad();
-                $localidad->nombre = $localizacion['regionZoneLocationId'];
-                $localidad->id_zona_euskalmet = $zonaEuskalmet['id'];
+                $localidad->localidad_id = $localizacion['regionZoneLocationId'];
+                $localidad->zona_id = $zonaEuskalmet['id'];
                 $localidad->save();
+                
             }
         }
     }
 }
+// {'zona_id', 'localidad_id', 'nombre_localidad'}

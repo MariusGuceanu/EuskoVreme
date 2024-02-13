@@ -7,5 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class ZonaEuskalmet extends Model
 {
-    use HasFactory;
+
+    protected $table = 'zona_euskalmet';
+    protected $fillable = ['cod_zona', 'cod_region'];
+    public $timestamps = false;
 }

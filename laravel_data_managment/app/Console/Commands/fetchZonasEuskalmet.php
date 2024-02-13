@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\Zona_Euskalmet;
+use App\Models\ZonaEuskalmet;
 use GuzzleHttp\Client;
 use Illuminate\Console\Command;
 
@@ -20,7 +21,7 @@ class fetchZonasEuskalmet extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Comando para guardar los datos de las zonas de la API de Euskalmet en la BBDD';
 
     /**
      * Execute the console command.
@@ -49,7 +50,7 @@ class fetchZonasEuskalmet extends Command
         $data = json_decode($response->getBody(), true);
 
         foreach ($data as $zona) {
-            $zona_euskalmet = new Zona_Euskalmet();
+            $zona_euskalmet = new ZonaEuskalmet();
             $zona_euskalmet->cod_zona = $zona['regionZoneId'];
             $zona_euskalmet->cod_region = $zona['regionId'];
             $zona_euskalmet->save();

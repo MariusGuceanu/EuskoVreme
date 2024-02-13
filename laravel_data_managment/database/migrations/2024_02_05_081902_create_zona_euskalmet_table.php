@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('zona_euskalmet', function (Blueprint $table) {
             $table->id();
-            $table->integer('cod_zona');
+            $table->string('cod_zona');
             $table->string('cod_region');
         });
     }

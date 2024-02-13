@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('provincia', function (Blueprint $table) {
             $table->id();
-            $table->integer('codProv');
+            $table->string('codProv');
             $table->string('Nombre');
         });
     }

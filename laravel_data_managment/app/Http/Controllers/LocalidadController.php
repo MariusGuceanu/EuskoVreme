@@ -67,4 +67,11 @@ class LocalidadController extends Controller
     {
         return Localidad::all();
     }
+
+    public function getByName($name)
+    {
+        $resultado = Localidad::where('localidad_id', '=', $name)->get();
+
+        return $resultado;
+    }
 }

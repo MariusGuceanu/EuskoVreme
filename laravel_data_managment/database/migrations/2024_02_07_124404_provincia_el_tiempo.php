@@ -12,7 +12,6 @@ return new class extends Migration {
     {
         Schema::create('municipio', function (Blueprint $table) {
             $table->id();
-            $table->string('nombreProvincia');
             $table->string('nombreMunicipio');
             $table->string('latitud');
             $table->string('longitud');
