@@ -268,7 +268,7 @@ body {
     right: 0;
 }
 
-#contenidoLogin a{
+#contenidoLogin a {
     display: block;
     margin: auto;
     text-align: center;
@@ -290,4 +290,14 @@ body {
     text-align: center;
     margin-top: 5%;
     color: aliceblue;
+}
+
+#contenidoPronostico {
+    display: flex;
+}
+
+#cardPronostico {
+    width: 30%;
+    background-color: #ABE7DF;
+    height: 40vh;
 }

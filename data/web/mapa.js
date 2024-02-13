@@ -1,12 +1,4 @@
 
-var markers = [
-    ["Irún", 43.3404, -1.7921],
-    ["Donostia", 43.3184, -1.9812],
-    ["Vitoria", 42.8597, -2.6818],
-    ["Mondragon", 43.0600, -2.4944],
-    ["Bilbao", 43.2630, -2.9340]
-];
-
 var zoom = 7;
 
 var map = L.map('mapid').setView([41.6857693, -5.9423150], zoom);
@@ -15,17 +7,26 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
-for (var i = 0; i < markers.length; i++) {
-    var marker = new L.marker([markers[i][1], markers[i][2]])
-        .bindPopup(markers[i][0])
-        .addTo(map);
+fetch('http://localhost:8087/api/municipios')
+    .then(res => res.json())
+    .then(data => {
+        data.localizaciones.forEach(municipio => {
+            var marker = new L.marker([municipio.latitud, municipio.longitud])
+                .bindPopup(municipio.nombreMunicipio)
+                .addTo(map);
 
-    // Añade el evento click al marcador para mostrar el gráfico en el popup
-    marker.on("click", function (e) {
-        showLineChart(e.latlng, getRandomData());
-        anadirPronostico();
-    });
-}
+            // Añade el evento click al marcador para mostrar el gráfico en el popup
+            marker.on("click", function (e) {
+                showLineChart(e.latlng, getRandomData());
+                // anadirPronostico();
+                const municipios = JSON.parse(localStorage.getItem('municipios')) || []
+                if(!municipios.includes(municipio.id))
+                municipios.push(municipio.id)
+                localStorage.setItem('municipios',JSON.stringify(municipios))
+
+            });
+        });
+    })
 
 // Función para mostrar un gráfico de líneas en el popup
 function showLineChart(latlng, data) {
@@ -71,30 +72,3 @@ function getRandomData() {
 
 var contenidoPronostico = document.getElementById("contenidoPronostico");
 
-// function anadirPronostico(){
-
-// }
-// for (var i = 0; i < markers.length; i++) {
-//     var marker = new L.marker([markers[i][1], markers[i][2]])
-//         .bindPopup(markers[i][0])
-//         .addTo(map);
-//     marker.on("click", function (e) {
-//         // Genera el HTML de la card
-//         var cardHTML = generateCardHTML(e.latlng, getRandomData());
-
-//         // Asigna el HTML al contenido del div
-//         contenidoPronostico.innerHTML = cardHTML;
-//     });
-// }
-// function generateCardHTML(latlng, data) {
-//     var cardHTML = '<div class="card">';
-//     cardHTML += '<div class="card-header">Pronóstico</div>';
-//     cardHTML += '<div class="card-body">';
-//     cardHTML += '<h5 class="card-title">Ubicación: ' + latlng.toString() + '</h5>';
-//     cardHTML += '<canvas id="chartContainer"></canvas>';
-//     cardHTML += '</div></div>';
-
-//     // Añade el contenedor de gráfico al DOM
-//     contenidoPronostico.innerHTML = cardHTML;
-//     return cardHTML;
-// }

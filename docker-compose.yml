@@ -6,7 +6,7 @@ services:
     ports:
       - "8082:80"
     volumes:
-      - './data/web/:/usr/local/apache2/htdocs/'     
+      - './data/web/index.html/:/usr/local/apache2/htdocs/'     
 
 # Contenedor nginx
   nginx:

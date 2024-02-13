@@ -52,7 +52,7 @@
               </ul>
               <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                  <a class="nav-link text-light me-5 ms-5 mt-2" href="login.html">
+                  <a class="nav-link text-light me-5 ms-5 mt-2" href="index.html">
                     <p class="h5"><i class="fa-regular fa-user" style="color: #FFFFFF; height: 20px;"></i> Iniciar
                       sesión</p>
                   </a>
@@ -127,6 +127,7 @@
 
         <!-- Fin de vista del mapa -->
 
+        <!-- Inicio de vista de pronostico -->
         <div id="contenidoPronostico" style="display: none;">
           <div id="divDD1">
             <img src="img/lluvia.png" draggable="true" ondragstart="drag(event)" id="lluvia" class="iconoP" width="102"
@@ -143,21 +144,8 @@
               width="102" height="102">
           </div>
 
-          <div class="container mb-5">
-            <div id="pronostico" style="max-height: 40vh; overflow-y: auto; background-color: blueviolet; border-radius: 3%; width: 33%;">
-            <div class="row">
-              <div class="col-3">
-                <div id="icono-drop" class="d-flex flex-column" ondrop="drop(event)"
-                  ondragover="allowDrop(event)">
-                </div>
-              </div>
-              <div class="col-9">
-                <div id="texto-icono" class="d-flex flex-column justify-content-center align-items-center">
-                </div>
-              </div>
-            </div>
-          </div>
-          </div>
+          <div id="cardsPronostico"></div>
+  
         </div>
 
         <script>

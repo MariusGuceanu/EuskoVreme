@@ -1,17 +1,20 @@
-const inicioDeSesion = e => {
+const register = e => {
     e.preventDefault()
 
-    const apiUrl = `http://localhost:8087/api/login`
+    const apiUrl = `http://localhost:8087/api/register`
 
     const email = document.getElementById('InputEmail').value
     const password = document.getElementById('InputPassword').value
+    const password_confirmation = document.getElementById('InputPassword2').value
+    const nombre_usuario = document.getElementById('InputName').value
+
 
     const options = {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email, password, password_confirmation, nombre_usuario}),
     }
 
     fetch(apiUrl, options)
@@ -24,4 +27,4 @@ const inicioDeSesion = e => {
         })
 }
 const form = document.querySelector('form')
-form.addEventListener('submit', evento => inicioDeSesion(evento))
+form.addEventListener('submit', evento => register(evento))
