@@ -5,9 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Localidad extends Model
+class ZonaEuskalmet extends Model
 {
-    protected $table = 'localidad';
+
+    protected $table = 'zona_euskalmet';
+    protected $fillable = ['cod_zona', 'cod_region'];
     public $timestamps = false;
-    protected $fillable = ['zona_id', 'localidad_id'];
 }

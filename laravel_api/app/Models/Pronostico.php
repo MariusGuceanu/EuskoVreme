@@ -9,5 +9,15 @@ class Pronostico extends Model
 {
     protected $table = 'pronostico';
     public $timestamps = false;
-    protected $fillable = ['localidad_id', 'nombre_localidad', 'fecha', 'hora', 'temperatura_actual', 'humedad', 'viento_direccion', 'viento_velocidad', 'precipitacion', 'estado'];
+    protected $fillable = [
+        'localidad_id',
+        'fecha',
+        'hora',
+        'temperatura_actual',
+        'humedad',
+        'viento_direccion',
+        'viento_velocidad',
+        'precipitacion',
+        'estado'
+    ];
 }
