@@ -24,7 +24,7 @@ function cambiarAMapa() {
 }
 
 function cambiarAPronostico() {
-    const body = document.getElementById('letra')
+    const body = document.getElementById('video-container')
     const contenidoInicio = document.getElementById('contenidoInicio');
     const contenidoMapa = document.getElementById('contenidoMapa');
     const contenidoPronostico = document.getElementById('contenidoPronostico')
@@ -42,21 +42,33 @@ function crearCardsPronostico() {
     const divCards = document.getElementById('cardsPronostico')
     const url = `http://localhost:8087/api/pronosticos/${municipios.join(',')}`
     console.log(url)
-    fetch(url)
+
+    const options = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        },
+    }
+    fetch(url, options)
         .then(res => res.json())
         .then(data => {
             let cards = "";
             data.mediciones.forEach(medicion => {
-                cards += `<div id="cardPronostico">  
-                <p>Temperatura actual: ${medicion.temperatura_actual}</p>
-                <p>Humedad: ${medicion.humedad}</p>
-                <p>Dirección del viento: ${medicion.viento_direccion}</p>
-                <p>Velocidad del viento:${medicion.viento_velocidad}</p>
-                <p>Precipitación: ${medicion.precipitacion}</p>
-                <p>Estado del cielo:${medicion.estado}</p>
-              </div>`
+                cards += `<div class="col mb-4">
+                <div class="card"> 
+                    <div class="card-body"> 
+                        <p class="card-text">Temperatura actual: ${medicion.temperatura_actual}</p> 
+                        <p class="card-text">Humedad: ${medicion.humedad}</p>
+                        <p class="card-text">Dirección del viento: ${medicion.viento_direccion}</p>
+                        <p class="card-text">Velocidad del viento: ${medicion.viento_velocidad}</p>
+                        <p class="card-text">Precipitación: ${medicion.precipitacion}</p>
+                        <p class="card-text">Estado del cielo: ${medicion.estado}</p>
+                    </div>
+                </div>
+            </div>`
             });
-            divCards.innerHTML = cards
+            divCards.innerHTML = `<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">${cards}</div>`;
         })
 
 

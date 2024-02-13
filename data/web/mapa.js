@@ -6,23 +6,33 @@ var map = L.map('mapid').setView([41.6857693, -5.9423150], zoom);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
+const options = {
+    method: 'GET',
+    headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+    },
+}
 
-fetch('http://localhost:8087/api/municipios')
+fetch('http://localhost:8087/api/municipios', options)
+
     .then(res => res.json())
     .then(data => {
         data.localizaciones.forEach(municipio => {
             var marker = new L.marker([municipio.latitud, municipio.longitud])
                 .bindPopup(municipio.nombreMunicipio)
                 .addTo(map);
-
             // Añade el evento click al marcador para mostrar el gráfico en el popup
             marker.on("click", function (e) {
                 showLineChart(e.latlng, getRandomData());
                 // anadirPronostico();
-                const municipios = JSON.parse(localStorage.getItem('municipios')) || []
-                if(!municipios.includes(municipio.id))
-                municipios.push(municipio.id)
-                localStorage.setItem('municipios',JSON.stringify(municipios))
+                let municipios = JSON.parse(localStorage.getItem('municipios')) || []
+                if (!municipios.includes(municipio.id))
+                    municipios.push(municipio.id)
+                else {
+                    municipios = municipios.filter(id => id == municipio.id)
+                }
+                localStorage.setItem('municipios', JSON.stringify(municipios))
 
             });
         });
@@ -70,5 +80,4 @@ function getRandomData() {
     };
 }
 
-var contenidoPronostico = document.getElementById("contenidoPronostico");
 
