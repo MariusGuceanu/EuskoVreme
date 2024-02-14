@@ -58,10 +58,10 @@ function crearCardsPronostico() {
                 cards += `<div class="col mb-4">
                 <div class="card"> 
                     <div class="card-body"> 
-                        <p class="card-text">Temperatura actual: ${medicion.temperatura_actual}</p> 
-                        <p class="card-text">Humedad: ${medicion.humedad}</p>
+                        <p class="card-text">Temperatura actual: ${medicion.temperatura_actual} ºC</p> 
+                        <p class="card-text">Humedad: ${medicion.humedad} %</p>
                         <p class="card-text">Dirección del viento: ${medicion.viento_direccion}</p>
-                        <p class="card-text">Velocidad del viento: ${medicion.viento_velocidad}</p>
+                        <p class="card-text">Velocidad del viento: ${medicion.viento_velocidad} Km/h</p>
                         <p class="card-text">Precipitación: ${medicion.precipitacion}</p>
                         <p class="card-text">Estado del cielo: ${medicion.estado}</p>
                     </div>

@@ -2,12 +2,12 @@
  new Chart(document.getElementById("grafico1"), {
     type: 'bar',
     data: {
-      labels: ["Bilbao", "Vitoria", "Irún", "Donostia", "Mondragón"],
+      labels: ["Bilbao", "Vitoria", "Irún", "Donostia", "Hondarribia", "Oiartzun"],
       datasets: [
         {
           label: "Temperatura Media (°C)",
           backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
-          data: [20, 25, 15, 18, 10]
+          data: [20, 25, 15, 18, 10, 7]
         }
       ]
     },
@@ -33,13 +33,13 @@
   new Chart(document.getElementById("grafico2"), {
     type: 'line',
     data: {
-      labels: ["Bilbao", "Vitoria", "Irún", "Donostia", "Mondragón"],
+      labels: ["Bilbao", "Vitoria", "Irún", "Donostia", "Hondarribia", "Oiartzun"],
       datasets: [
         {
           label: "Precipitación Media (mm)",
           borderColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
           fill: false,
-          data: [10, 15, 5, 8, 12] // Valores ficticios de precipitación media para cada ciudad
+          data: [10, 15, 5, 8, 12, 9] // Valores ficticios de precipitación media para cada ciudad
         }
       ]
     },

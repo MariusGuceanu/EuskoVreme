@@ -1,20 +1,13 @@
 
-var zoom = 7;
+var zoom = 6;
 
 var map = L.map('mapid').setView([41.6857693, -5.9423150], zoom);
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
-let optionsMapa = {
-    method: 'GET',
-    headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('token')}`,
-    },
-};
 
-fetch('http://localhost:8087/api/municipios', optionsMapa)
+fetch('http://localhost:8087/api/municipios')
 
     .then(res => res.json())
     .then(data => {
@@ -25,8 +18,13 @@ fetch('http://localhost:8087/api/municipios', optionsMapa)
 
             // Añade el evento click al marcador para mostrar el gráfico en el popup
             marker.on("click", function (e) {
-                showLineChart(e.latlng, getRandomData());
-                // anadirPronostico();
+                fetch(`http://localhost:8087/api/pronosticosHoy/${municipio.id}`)
+                .then(res => res.json())
+                .then(data =>{
+                    const temperaturas = data.registros.map(registro => registro.temperatura_actual)
+                    showLineChart(e.latlng, temperaturas);
+                    console.log(temperaturas)
+                })
                 let municipios = JSON.parse(localStorage.getItem('municipios')) || []
                 if (!municipios.includes(municipio.id))
                     municipios.push(municipio.id)
@@ -53,10 +51,10 @@ function showLineChart(latlng, data) {
         data: {
             labels: data.labels,
             datasets: [{
-                label: "Datos de ejemplo",
+                label: "Temperatura",
                 borderColor: "rgba(75, 192, 192, 1)",
                 borderWidth: 1,
-                data: data.values
+                data:data
             }]
         }
     });

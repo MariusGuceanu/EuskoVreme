@@ -25,23 +25,15 @@ class PronosticoController extends Controller
         ]);
     }
 
-    public function pronosticoPorHora(Request $request)
+    public function pronosticoHoy(Request $request)
     {
         $fechaHoy = Carbon::now()->toDateString();
-        $fechaInicio = $request['fecha'];
         $idLocalizacion = $request['id'];
 
         $registrosPorHora = Pronostico::where('localidad_id', $idLocalizacion)
-            ->whereBetween('fecha', [$fechaInicio, $fechaHoy])
-            ->orderBy('fecha')
+            ->where('fecha', $fechaHoy)
             ->orderBy('hora')
-            ->get()
-            ->groupBy(function ($date) {
-                return Carbon::parse("{$date->fecha} {$date->hora}")->format('Y-m-d H:00:00');
-            })
-            ->map(function ($group) {
-                return $group->first();
-            });
+            ->get();
 
         return response()->json([
             'registros' => $registrosPorHora

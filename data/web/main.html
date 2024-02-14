@@ -53,8 +53,7 @@
               <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                   <a class="nav-link text-light me-5 ms-5 mt-2" href="index.html">
-                    <p class="h5"><i class="fa-regular fa-user" style="color: #FFFFFF; height: 20px;"></i> Iniciar
-                      sesión</p>
+                    <p class="h5"><i class="fa-solid fa-right-from-bracket"></i> Cerrar sesión</p>
                   </a>
                 </li>
               </ul>
@@ -152,23 +151,12 @@
           </div>
 
           <script>
-            var iconoDescripcion = {
-              lluvia: "Descripción de lluvia",
-              veleta: "Descripción de veleta",
-              viento: "Descripción de viento",
-              nube: "Descripción de nube",
-              celsius: "Descripción de celsius",
-              humedad: "Descripción de humedad"
-            };
-
+            // Función para permitir soltar íconos en las tarjetas
             function allowDrop(ev) {
               ev.preventDefault();
             }
 
-            function drag(ev) {
-              ev.dataTransfer.setData("text", ev.target.id);
-            }
-
+            // Función para procesar el evento de soltar un ícono en la tarjeta
             function drop(ev) {
               ev.preventDefault();
               var data = ev.dataTransfer.getData("text");
@@ -176,9 +164,16 @@
               var clonedElement = draggedElement.cloneNode(true);
               ev.target.appendChild(clonedElement);
 
-              var text = iconoDescripcion[data]; // Obtener la descripción del icono
+              var text = iconoDescripcion[data]; // Suponiendo que tengas un objeto iconoDescripcion que mapea el ID del icono a su descripción
               document.getElementById("texto-icono").innerHTML = text;
             }
+
+            // Agregamos los eventos de drag and drop a las tarjetas generadas
+            var cards = document.querySelectorAll('.card');
+            cards.forEach(function (card) {
+              card.addEventListener('dragover', allowDrop);
+              card.addEventListener('drop', drop);
+            });
           </script>
 
           <script src="charts.js"></script>

@@ -22,11 +22,13 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::post('login', [AuthController::class, 'login']);
+Route::post('logout', [AuthController::class, 'logout']);
+
 
 Route::post('register', [AuthController::class, 'register']);
 
+Route::get('municipios', [MunicipioController::class, 'index']);
+Route::get('pronosticosHoy/{id}', [PronosticoController::class, 'PronosticoHoy']);
 Route::middleware('auth:api')->group(function () {
-    Route::get('municipios', [MunicipioController::class, 'index']);
     Route::get('pronosticos/{municipios}', [PronosticoController::class, 'getByIds']);
-    Route::get('pronosticosPorHora/{id}/{fecha}', [PronosticoController::class, 'PronosticoPorHoras']);
 });
