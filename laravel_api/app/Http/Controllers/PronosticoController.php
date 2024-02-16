@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Localidad;
 use App\Models\Pronostico;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -20,9 +21,13 @@ class PronosticoController extends Controller
             ->take(count($listaMunicipios))
             ->get();
 
+        foreach ($ultimosRegistros as $ultimoRegistro) {
+            $ultimoRegistro -> localidad_id = Localidad::find($ultimoRegistro -> localidad_id);
+        }    
         return response()->json([
             'mediciones' => $ultimosRegistros
         ]);
+
     }
 
     public function pronosticoHoy(Request $request)

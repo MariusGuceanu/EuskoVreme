@@ -39,7 +39,7 @@
           label: "Precipitación Media (mm)",
           borderColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
           fill: false,
-          data: [10, 15, 5, 8, 12, 9] // Valores ficticios de precipitación media para cada ciudad
+          data: [10, 15, 5, 8, 12, 9] 
         }
       ]
     },

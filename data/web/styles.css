@@ -255,6 +255,12 @@ body {
         text-align: center;
         height: auto;
     }
+
+    #noticia1:hover #noticiaContent,
+    #noticia2:hover #noticiaContent {
+        opacity: 1;
+        font-size: 10px;
+    }
 }
 
 #contenidoLogin {

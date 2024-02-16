@@ -19,17 +19,17 @@ fetch('http://localhost:8087/api/municipios')
             // Añade el evento click al marcador para mostrar el gráfico en el popup
             marker.on("click", function (e) {
                 fetch(`http://localhost:8087/api/pronosticosHoy/${municipio.id}`)
-                .then(res => res.json())
-                .then(data =>{
-                    const temperaturas = data.registros.map(registro => registro.temperatura_actual)
-                    showLineChart(e.latlng, temperaturas);
-                    console.log(temperaturas)
-                })
+                    .then(res => res.json())
+                    .then(data => {
+                        const temperaturas = data.registros.map(registro => registro.temperatura_actual)
+                        showLineChart(e.latlng, temperaturas);
+                        console.log(temperaturas)
+                    })
                 let municipios = JSON.parse(localStorage.getItem('municipios')) || []
-                if (!municipios.includes(municipio.id))
-                    municipios.push(municipio.id)
+                if (municipios.find(m => m.id == municipio.id) == undefined)
+                    municipios.push({ id: municipio.id, zona: municipio.id_localidad.zona_id[0].cod_zona, localidad_id: municipio.id_localidad.localidad_id })
                 else {
-                    municipios = municipios.filter(id => id == municipio.id)
+                    municipios = municipios.filter(m => m.id != municipio.id)
                 }
                 localStorage.setItem('municipios', JSON.stringify(municipios))
 
@@ -54,7 +54,7 @@ function showLineChart(latlng, data) {
                 label: "Temperatura",
                 borderColor: "rgba(75, 192, 192, 1)",
                 borderWidth: 1,
-                data:data
+                data: data
             }]
         }
     });
